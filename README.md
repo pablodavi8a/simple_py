@@ -45,17 +45,27 @@ source .venv/bin/activate
 python -m venv .venv
 .venv\Scripts\activate
 
-# Upgrade pip
-python -m pip install --upgrade pip
+# Upgrade pip setuptools and wheel
+pip install --upgrade pip setuptools wheel
+```
+---
 
-# Install pre-commit hooks
-pip install pre-commit build twine
-pre-commit install
+## 🔧 Paso 2: Instalar las herramientas de desarrollo
+
+📦 `build` es la herramienta oficial para empaquetar tu librería de Python.
+Permite generar los archivos estándar (`.whl` y `.tar.gz`) que se requieren para subir a PyPI.
+Reemplaza los comandos antiguos como `python setup.py sdist bdist_wheel`.
+
+🚀 `twine` es la herramienta recomendada para subir paquetes a PyPI.
+Se encarga de la autenticación y del envío seguro de los archivos generados por `build`.
+
+```bash
+pip install build twine
 ```
 
 ---
 
-## 🛠️ Paso 2: Crear el archivo `pyproject.toml`
+## 🛠️ Paso 3: Crear el archivo `pyproject.toml`
 
 ```toml
 [project]
@@ -84,7 +94,7 @@ local_scheme = "node-and-date"
 
 ---
 
-## 📁 Paso 3: Código fuente y versión automática
+## 📁 Paso 4: Código fuente y versión automática
 
 ```python
 # src/simple_py/__init__.py
@@ -105,7 +115,7 @@ def add(a, b):
 
 ---
 
-## ✅ Paso 4: Instalar en modo editable
+## ✅ Paso 5: Instalar en modo editable
 
 ```bash
 pip install -e .
@@ -115,7 +125,7 @@ Esto instala la librería localmente, permitiéndote probar los cambios sin rein
 
 ---
 
-## 🧪 Paso 5: Crear y correr pruebas con pytest
+## 🧪 Paso 6: Crear y correr pruebas con pytest
 
 Instala pytest:
 
@@ -141,7 +151,7 @@ pytest
 
 ---
 
-## 🎨 Paso 6: Formato automático con black y pre-commit
+## 🎨 Paso 7: Formato automático con black y pre-commit
 
 Instala las herramientas:
 
@@ -176,7 +186,7 @@ pre-commit run --all-files
 
 ---
 
-## 🏷️ Paso 7: Versionado automático con Git
+## 🏷️ Paso 8: Versionado automático con Git
 
 1. Inicializa Git:
 
@@ -203,7 +213,7 @@ print(simple_py.__version__)  # Salida: 0.1.0 o 0.1.0.post0+<hash>
 
 ---
 
-## 🚀 Paso 8: Script para lanzar una versión
+## 🚀 Paso 9: Script para lanzar una versión
 
 ```bash
 # release.sh
@@ -232,6 +242,15 @@ else
 fi
 ```
 
+---
+
+## 🚀 Paso 10: Generar archivo requerimientos.txt con PIP-CHILL
+
+```bash
+pip install pip-chill
+
+pip-chill > requirements.txt
+```
 ---
 
 ## 💡 Buenas prácticas
