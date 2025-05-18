@@ -37,8 +37,20 @@ simple_py/
 ## 🔧 Paso 1: Crear un entorno virtual
 
 ```bash
+# MacOs
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Windwos
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+.venv\Scripts\activate
+
+# Upgrade pip
+python -m pip install --upgrade pip
+
+# Install pre-commit hooks
+pip install pre-commit build twine
+pre-commit install
 ```
 
 ---
