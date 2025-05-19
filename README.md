@@ -11,7 +11,7 @@ Antes de comenzar, asegúrate de tener instalado:
 - Python 3.8 o superior
 - Git
 - pip
-- Una cuenta en GitHub (opcional, para alojar el proyecto)
+- Una cuenta en GitHub
 - Una cuenta en PyPI (opcional, para publicar la librería)
 
 ---
@@ -106,6 +106,10 @@ except ImportError:
 __version__ = version("simple_py")
 __author__ = "Pablo Ochoa"
 ```
+```bash
+# Necesario instalar importlib_metadata (versiones anteriores de Python)
+pip install importlib_metadata
+```
 
 ```python
 # src/simple_py/math_utils.py
@@ -121,8 +125,22 @@ def add(a, b):
 pip install -e .
 ```
 
-Esto instala la librería localmente, permitiéndote probar los cambios sin reinstalar cada vez.
+Esto instala la librería localmente, permitiéndote probar los cambios sin reinstalar cada vez. Si existe un error es por que debe estas buscando el versionado dinamico con setuptools_scm.
 
+```bash
+Comentas las siguienes lineas y agregar las siguientes:
+
+#dynamic = ["version"]
+version = "0.1.0"
+
+#requires = ["setuptools>=61.0", "setuptools-scm"]
+requires = ["setuptools>=61.0"]
+
+#[tool.setuptools_scm]
+#version_scheme = "post-release"
+#local_scheme = "node-and-date"
+
+```
 ---
 
 ## 🧪 Paso 6: Crear y correr pruebas con pytest
@@ -242,6 +260,12 @@ else
 fi
 ```
 
+```bash
+# Dar permisos
+chmod +x release.sh
+# Run
+./release.sh
+```
 ---
 
 ## 🚀 Paso 10: Generar archivo requerimientos.txt con PIP-CHILL
